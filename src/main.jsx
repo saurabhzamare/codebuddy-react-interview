@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
+import "./styles/index.css";
 
 async function enableMocking() {
   if (import.meta.env.PROD) {
@@ -12,7 +12,10 @@ async function enableMocking() {
 
   // `worker.start()` returns a Promise that resolves
   // once the Service Worker is up and ready to intercept requests.
-  return worker.start();
+  // return worker.start();
+  return worker.start({
+    onUnhandledRequest: 'bypass',
+});
 }
 
 enableMocking().then(() => {
